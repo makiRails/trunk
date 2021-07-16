@@ -1,0 +1,38 @@
+// Place all the styles related to the Area controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.canvas-wrapper {
+    position: relative;
+}
+.canvas-wrapper canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+button.notCreated {
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #44DD77;
+  color: #fff;
+  padding: 8px 16px;
+  margin: 3px;
+}
+button.wait {
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #44DD77;
+  color: #4477DD;
+  padding: 8px 16px;
+  margin: 3px;
+}
+button.edit {
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #4477DD;
+  color: #fff;
+  padding: 8px 16px;
+  margin: 3px;
+}

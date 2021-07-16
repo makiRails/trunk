@@ -1,0 +1,107 @@
+<h1>Rule:ガチエリア, Stage:ガンガゼ野外音楽堂</h1>
+<p>クリック2回で特定位置からの射程／視界がざっくりチェックできます。間違えたら右クリック！</p>
+<div id="menu">
+<select id="select_weapon">
+	<%= @weaponData.each do |w| %>
+		<option id="weapon_<%= w.id %>" value="<%= w.id %>" data-range="<%= w.range %>"><%= w.name %></option>
+	<% end %>
+</select>
+<button id="save">保存</button>
+<a hidden id="download" download="" href=""></a>
+</div>
+<div id="screen" class="canvas-wrapper">
+    <canvas id="canvas" width="1000px" height="1000px"></canvas>
+    <canvas id="player_canvas" width="1000px" height="1000px"></canvas>
+</div>
+<%= javascript_pack_tag "webgl2/drawImage2D" %>
+<%= javascript_pack_tag "webgl2/drawCircle" %>
+<%= javascript_pack_tag "webgl2/drawFan" %>
+<script>
+        var centerPos = [0, 0];
+        var lookForPos = [0, 0];
+	var stopLookFor = false;
+	Packs["webgl2/drawImage2D"].exec("<%= image_path('area_map/ガンガゼ野外音楽堂.png') %>");
+        let player = document.getElementById('player_canvas');
+        player.addEventListener('click', function(e)
+	{
+		stopLookFor = false;
+                centerPos[0] = e.offsetX;
+                centerPos[1] = e.offsetY;
+		Packs["webgl2/drawCircle"].exec(centerPos);
+                // jQuery使ってみる
+                $('#screen').append(
+			"<canvas id='look_for_canvas' width='1000px' height='1000px'></canvas>");
+		$('#look_for_canvas').on(
+		{ 'mousedown': function(e)
+		{
+			lookFor_DoEvent(e);
+			switch (e.which)
+			{
+			// press L：角度確定/解除（トグル）
+			// press R：キャンセル
+			case 1: stopLookFor = !stopLookFor; break;
+			case 3: $('#look_for_canvas').remove(); break;
+			default: break;
+			}
+		}, 'mousemove': function(e)
+		{
+			lookFor_DoEvent(e);
+		}});
+	});
+        function lookFor_DoEvent(e)
+	{
+		if (stopLookFor) { return; }
+        	lookForPos[0] = e.offsetX;
+        	lookForPos[1] = e.offsetY;
+                let v = $("#select_weapon option:selected").attr("data-range");
+		Packs["webgl2/drawFan"].exec(centerPos, lookForPos, v);	
+	}
+	const resolveImage = (ctx, obj) => 
+	{
+		return new Promise((resolve, reject) => 
+		{
+			const image = new Image();
+			image.onload = () => 
+			{
+				ctx.drawImage(image, 0, 0, 1000, 1000);
+				resolve(image);
+			}
+			image.src = obj.toDataURL();
+		});
+	}
+	async function loadCanvas(ctx, obj)
+	{
+		await resolveImage(ctx, obj);
+	}
+	$('#save').on({ 'click': function()
+	{
+		//html2canvas(document.querySelector("#screen"))
+		//.then( function(canvas)
+		//{
+		//	$("#download").attr("download", `download.png`);
+		//	$("#download").attr("href", canvas.toDataURL());
+		//	$("#download")[0].click();
+		//});
+
+		// 2回目に残っていたら透過で上書きされるので消す
+		if(document.getElementById("saving_image") != null) $("#saving_image")[0].remove();
+		//var linkObj = document.createElement("a");
+		//linkObj.id = "download";
+		
+		var resultObj = document.createElement("canvas");
+		resultObj.id = "savingImage";
+		resultObj.width = 1000;
+		resultObj.height = 1000;
+		var resultCtx = resultObj.getContext('2d');
+		loadCanvas(resultCtx, $("#canvas")[0])
+		.then( result => { loadCanvas(resultCtx, $("#player_canvas")[0])
+		.then( result => { if(document.getElementById("look_for_canvas") != null) loadCanvas(resultCtx, $("#look_for_canvas")[0])
+		.then( result => {
+			$("#download").attr("download", `download.png`);
+			$("#download").attr("href", resultObj.toDataURL());
+			$("#download")[0].click();
+		}); }); });
+		//$("#download")[0].remove();
+	}});
+</script>
+

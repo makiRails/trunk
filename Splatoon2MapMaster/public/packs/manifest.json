@@ -1,0 +1,54 @@
+{
+  "application.js": "/packs/js/application-bbd9c06b7c061d598968.js",
+  "application.js.map": "/packs/js/application-bbd9c06b7c061d598968.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs/js/application-bbd9c06b7c061d598968.js"
+      ],
+      "js.map": [
+        "/packs/js/application-bbd9c06b7c061d598968.js.map"
+      ]
+    },
+    "hello_erb": {
+      "js": [
+        "/packs/js/hello_erb-f35c37ac25369e264f61.js"
+      ],
+      "js.map": [
+        "/packs/js/hello_erb-f35c37ac25369e264f61.js.map"
+      ]
+    },
+    "webgl2/drawCircle": {
+      "js": [
+        "/packs/js/webgl2/drawCircle-9f7f20d617659a9e1579.js"
+      ],
+      "js.map": [
+        "/packs/js/webgl2/drawCircle-9f7f20d617659a9e1579.js.map"
+      ]
+    },
+    "webgl2/drawFan": {
+      "js": [
+        "/packs/js/webgl2/drawFan-8cfb8ec0894ee302c201.js"
+      ],
+      "js.map": [
+        "/packs/js/webgl2/drawFan-8cfb8ec0894ee302c201.js.map"
+      ]
+    },
+    "webgl2/drawImage2D": {
+      "js": [
+        "/packs/js/webgl2/drawImage2D-7939adf742cd751b7a8d.js"
+      ],
+      "js.map": [
+        "/packs/js/webgl2/drawImage2D-7939adf742cd751b7a8d.js.map"
+      ]
+    }
+  },
+  "hello_erb.js": "/packs/js/hello_erb-f35c37ac25369e264f61.js",
+  "hello_erb.js.map": "/packs/js/hello_erb-f35c37ac25369e264f61.js.map",
+  "webgl2/drawCircle.js": "/packs/js/webgl2/drawCircle-9f7f20d617659a9e1579.js",
+  "webgl2/drawCircle.js.map": "/packs/js/webgl2/drawCircle-9f7f20d617659a9e1579.js.map",
+  "webgl2/drawFan.js": "/packs/js/webgl2/drawFan-8cfb8ec0894ee302c201.js",
+  "webgl2/drawFan.js.map": "/packs/js/webgl2/drawFan-8cfb8ec0894ee302c201.js.map",
+  "webgl2/drawImage2D.js": "/packs/js/webgl2/drawImage2D-7939adf742cd751b7a8d.js",
+  "webgl2/drawImage2D.js.map": "/packs/js/webgl2/drawImage2D-7939adf742cd751b7a8d.js.map"
+}
