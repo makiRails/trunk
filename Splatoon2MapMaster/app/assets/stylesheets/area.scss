@@ -36,3 +36,39 @@ button.edit {
   padding: 8px 16px;
   margin: 3px;
 }
+button.deactive {
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #666666;
+  color: #fff;
+  padding: 8px 16px;
+  margin: 3px;
+}
+button.active {
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #4477DD;
+  color: #fff;
+  padding: 8px 16px;
+  margin: 3px;
+}
+.edit_menu {
+  appearance: none;
+  position: relative;
+  display: inline;
+}
+#palette {
+  position: relative;
+  display: inline-block;
+  top:      0;
+  left:     0;
+}
+#buttons_area{
+  position: relative;
+  display: inline-block;
+  top:      0;
+  left:     0;
+}
+

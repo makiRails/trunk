@@ -1,5 +1,5 @@
 <h1>Rule:ガチエリア, Stage:ガンガゼ野外音楽堂</h1>
-<p>複数件を扱うための検証ページ。今日はボタン遷移を作成する。</p>
+<p>複数件を扱うための検証ページ。作成手順：①ボタン遷移　②カラーパレット（色変更／移動／回転／削除）　③プレイヤー情報の文字列化、タイトル入力欄、DB入力ボタン、DB出力ボタン　④スキーマ完成させて連携</p>
 <div id="menu">
 <select id="select_weapon">
 	<%= @weaponData.each do |w| %>
@@ -8,6 +8,14 @@
 </select>
 <button id="save">保存</button>
 <a hidden id="download" download="" href=""></a>
+</div>
+<div id="edit_menu" style="display:inline;">
+    <div id="button_area" style="display:inline;">
+    <button id="mv" class="deactive">移動</button>
+    <button id="rot" class="deactive">回転</button>
+    <button id="rm" class="deactive">削除</button>
+    </div>
+    <table id="palette"></table>
 </div>
 <div id="screen" class="canvas-wrapper">
     <canvas id="canvas" width="1000px" height="1000px"></canvas>
@@ -19,7 +27,6 @@
 <script>
 	var objCount = 0;
 	var editID = "";
-
 	function clearEdit()
 	{
 		// 他に編集中ボタンがあれば編集へ
@@ -44,18 +51,18 @@
 		$('#menu').append('<button id="' + t + '" class="notCreated">作成</button>');
 		$('#' + t).on({ "click" : function(e2) { bClickHandler(e2); } });
 	}
-	function bCL_notCreated(e)
+	function bCH_notCreated(e)
 	{
 		clearEdit();
 		editStart(e);
 		createNewButton(e);
 	}
-	function bCL_wait(e)
+	function bCH_wait(e)
 	{
 		clearEdit();
 		editStart(e);
 	}
-	function bCL_edit(e)
+	function bCH_edit(e)
 	{
 		clearEdit();
 	}
@@ -63,14 +70,22 @@
 	{
 		switch ( e.target.className )
 		{
-		case "notCreated": bCL_notCreated(e); break;
-		case "wait":       bCL_wait(e);       break;
-		case "edit":       bCL_edit(e);       break;
+		case "notCreated": bCH_notCreated(e); break;
+		case "wait":       bCH_wait(e);       break;
+		case "edit":       bCH_edit(e);       break;
 		default:                              break;
 		}
 	}
 	$('#menu').append('<button id="b000" class="notCreated">作成</button>');
 	$("#b000").on( { "click": function(e){ bClickHandler(e); } } );
+
+	// カラーパレット作成
+	var myColor = ["#b00", "#f90", "#ffd31f", "#009a00", "#00adb3", "#0060b3", "#b300b3", "#ff1493", "#9a4d00"];
+	$('#palette').append('<tr id="tr1"></tr>');
+	for(let i1 = 0; i1 < 9; ++i1)
+	{
+		$('#tr1').append('<td id="palette' + i1 + '" style="background-color:' + myColor[i1] + '; width:75px;height:30px;"></td>');
+	}
 
         var centerPos = [0, 0];
         var lookForPos = [0, 0];
@@ -130,18 +145,8 @@
 	}
 	$('#save').on({ 'click': function()
 	{
-		//html2canvas(document.querySelector("#screen"))
-		//.then( function(canvas)
-		//{
-		//	$("#download").attr("download", `download.png`);
-		//	$("#download").attr("href", canvas.toDataURL());
-		//	$("#download")[0].click();
-		//});
-
 		// 2回目に残っていたら透過で上書きされるので消す
 		if(document.getElementById("saving_image") != null) $("#saving_image")[0].remove();
-		//var linkObj = document.createElement("a");
-		//linkObj.id = "download";
 		
 		var resultObj = document.createElement("canvas");
 		resultObj.id = "savingImage";
@@ -156,7 +161,6 @@
 			$("#download").attr("href", resultObj.toDataURL());
 			$("#download")[0].click();
 		}); }); });
-		//$("#download")[0].remove();
 	}});
 </script>
 
