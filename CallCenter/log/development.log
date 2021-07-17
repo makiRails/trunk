@@ -1,0 +1,268 @@
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePlans (20210717015820)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "plans" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar NOT NULL, "price" integer NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210717015820"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-17 02:04:38.487744"], ["updated_at", "2021-07-17 02:04:38.487744"]]
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateContracts (20210717020658)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "contracts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "plan_id" integer, "name" varchar NOT NULL, "users_quantity" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_contracts_on_plan_id" ON "contracts" ("plan_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210717020658"]]
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCalls (20210717021452)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "calls" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "contract_id" integer, "from" varchar NOT NULL, "to" varchar NOT NULL, "duration" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_calls_on_contract_id" ON "calls" ("contract_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210717021452"]]
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mCall Load (0.2ms)[0m  [1m[34mSELECT "calls".* FROM "calls"[0m
+  [1m[36mContract Load (0.2ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts"[0m
+  [1m[36mPlan Load (0.1ms)[0m  [1m[34mSELECT "plans".* FROM "plans"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPlan Create (0.5ms)[0m  [1m[32mINSERT INTO "plans" ("id", "title", "price") VALUES (?, ?, ?)[0m  [["id", 1], ["title", "Free"], ["price", 0]]
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPlan Create (0.4ms)[0m  [1m[32mINSERT INTO "plans" ("id", "title", "price") VALUES (?, ?, ?)[0m  [["id", 2], ["title", "Basic"], ["price", 4800]]
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPlan Load (0.3ms)[0m  [1m[34mSELECT "plans".* FROM "plans" WHERE "plans"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mContract Create (0.4ms)[0m  [1m[32mINSERT INTO "contracts" ("plan_id", "name", "users_quantity", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["plan_id", 1], ["name", "株式会社ホゲホゲ"], ["users_quantity", 5], ["created_at", "2021-07-17 02:34:41.767309"], ["updated_at", "2021-07-17 02:34:41.767309"]]
+  [1m[36mTRANSACTION (26.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mContract Load (0.3ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCall Create (0.3ms)[0m  [1m[32mINSERT INTO "calls" ("contract_id", "from", "to", "duration", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["contract_id", 1], ["from", "+818012345678"], ["to", "+815011112222"], ["duration", 120], ["created_at", "2021-06-03 10:00:00"], ["updated_at", "2021-07-17 02:34:41.814180"]]
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mContract Load (0.1ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCall Create (0.4ms)[0m  [1m[32mINSERT INTO "calls" ("contract_id", "from", "to", "duration", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["contract_id", 1], ["from", "+818012345678"], ["to", "+815011112222"], ["duration", 600], ["created_at", "2021-06-04 10:00:00"], ["updated_at", "2021-07-17 02:34:41.825956"]]
+  [1m[36mTRANSACTION (1.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mContract Load (0.1ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCall Create (0.3ms)[0m  [1m[32mINSERT INTO "calls" ("contract_id", "from", "to", "duration", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["contract_id", 1], ["from", "+817055556666"], ["to", "+815011112222"], ["duration", 510], ["created_at", "2021-07-03 10:00:00"], ["updated_at", "2021-07-17 02:34:41.854862"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mContract Load (0.2ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCall Create (0.5ms)[0m  [1m[32mINSERT INTO "calls" ("contract_id", "from", "to", "duration", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["contract_id", 1], ["from", "+815011112222"], ["to", "+818012345678"], ["duration", 400], ["created_at", "2021-07-04 10:00:00"], ["updated_at", "2021-07-17 02:34:41.887780"]]
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mContract Load (0.2ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCall Create (0.4ms)[0m  [1m[32mINSERT INTO "calls" ("contract_id", "from", "to", "duration", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["contract_id", 1], ["from", "+815011112222"], ["to", "+817055556666"], ["duration", 320], ["created_at", "2021-07-05 10:00:00"], ["updated_at", "2021-07-17 02:34:41.923121"]]
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mPlan Load (0.2ms)[0m  [1m[34mSELECT "plans".* FROM "plans" /* loading for inspect */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mContract Load (0.4ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" ORDER BY "contracts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mContract Load (0.2ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" ORDER BY "contracts"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mPlan Load (0.2ms)[0m  [1m[34mSELECT "plans".* FROM "plans" WHERE "plans"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/contracts" for 10.8.0.6 at 2021-07-17 11:52:58 +0900
+Cannot render console from 10.8.0.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/contracts"):
+  
+Started GET "/contract/show/1" for 10.8.0.6 at 2021-07-17 11:53:25 +0900
+Cannot render console from 10.8.0.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActionController::RoutingError (No route matches [GET] "/contract/show/1"):
+  
+Started GET "/contracts/show/1" for 10.8.0.6 at 2021-07-17 11:53:34 +0900
+Cannot render console from 10.8.0.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActionController::RoutingError (No route matches [GET] "/contracts/show/1"):
+  
+Started GET "/contracts/1/" for 10.8.0.6 at 2021-07-17 11:53:49 +0900
+Cannot render console from 10.8.0.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ContractsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContract Load (0.6ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contracts_controller.rb:3:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering contracts/show.html.erb within layouts/application
+  Rendered contracts/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 128)
+[Webpacker] Compiling...
+[Webpacker] Compiled all packs in /root/git_work/trunk/CallCenter/public/packs
+[Webpacker] Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-methods since the "loose" mode option was set to "true" for @babel/plugin-proposal-class-properties.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-methods", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-methods since the "loose" mode option was set to "true" for @babel/plugin-proposal-class-properties.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-methods", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-methods since the "loose" mode option was set to "true" for @babel/plugin-proposal-class-properties.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-methods", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-methods since the "loose" mode option was set to "true" for @babel/plugin-proposal-class-properties.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-methods", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-methods since the "loose" mode option was set to "true" for @babel/plugin-proposal-class-properties.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-methods", { "loose": true }]
+to the "plugins" section of your Babel config.
+Though the "loose" option was set to "false" in your @babel/preset-env config, it will not be used for @babel/plugin-proposal-private-methods since the "loose" mode option was set to "true" for @babel/plugin-proposal-class-properties.
+The "loose" option must be the same for @babel/plugin-proposal-class-properties, @babel/plugin-proposal-private-methods and @babel/plugin-proposal-private-property-in-object (when they are enabled): you can silence this warning by explicitly adding
+	["@babel/plugin-proposal-private-methods", { "loose": true }]
+to the "plugins" section of your Babel config.
+
+[Webpacker] Hash: e2a8a876c5815bee1e21
+Version: webpack 4.46.0
+Time: 3011ms
+Built at: 2021-07-17 11:53:56 AM
+                                     Asset       Size       Chunks                         Chunk Names
+    js/application-e421b4aa3f716bebdab1.js    125 KiB  application  [emitted] [immutable]  application
+js/application-e421b4aa3f716bebdab1.js.map    139 KiB  application  [emitted] [dev]        application
+                             manifest.json  364 bytes               [emitted]              
+Entrypoint application = js/application-e421b4aa3f716bebdab1.js js/application-e421b4aa3f716bebdab1.js.map
+[./app/javascript/channels sync recursive _channel\.js$] ./app/javascript/channels sync _channel\.js$ 160 bytes {application} [built]
+[./app/javascript/channels/index.js] 211 bytes {application} [built]
+[./app/javascript/packs/application.js] 492 bytes {application} [built]
+[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 552 bytes {application} [built]
+    + 3 hidden modules
+
+  Rendered layout layouts/application.html.erb (Duration: 6491.1ms | Allocations: 16867)
+Completed 200 OK in 6529ms (Views: 6496.6ms | ActiveRecord: 2.1ms | Allocations: 25172)
+
+
+Started GET "/contracts/1/" for 10.8.0.6 at 2021-07-17 12:21:45 +0900
+Cannot render console from 10.8.0.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ContractsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContract Load (0.2ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contracts_controller.rb:3:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering contracts/show.html.erb within layouts/application
+  Rendered contracts/show.html.erb within layouts/application (Duration: 17.7ms | Allocations: 3599)
+  Rendered layout layouts/application.html.erb (Duration: 18.1ms | Allocations: 3668)
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 0.9ms | Allocations: 12195)
+
+
+  
+ActionView::Template::Error (undefined method `price' for #<Contract:0x000055d7ce8181b0>):
+    1: <h1><%= @contract.name %></h1>
+    2: <p>金額：<%= @contract.price %></p>
+  
+app/views/contracts/show.html.erb:2
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mContract Load (0.3ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" /* loading for inspect */ LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/contracts/1/" for 10.8.0.6 at 2021-07-17 12:25:05 +0900
+Cannot render console from 10.8.0.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ContractsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContract Load (0.2ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contracts_controller.rb:3:in `show'
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.8ms | Allocations: 8443)
+
+
+  
+NoMethodError (undefined method `plan' for nil:NilClass):
+  
+app/controllers/contracts_controller.rb:4:in `show'
+Started GET "/contracts/1/" for 10.8.0.6 at 2021-07-17 12:26:15 +0900
+Cannot render console from 10.8.0.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ContractsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContract Load (0.2ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contracts_controller.rb:3:in `show'
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.9ms | Allocations: 8313)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/contracts_controller.rb:4:in `show'
+Started GET "/contracts/1/" for 10.8.0.6 at 2021-07-17 12:29:57 +0900
+Cannot render console from 10.8.0.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ContractsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContract Load (0.2ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contracts_controller.rb:3:in `show'
+Completed 404 Not Found in 21ms (ActiveRecord: 1.1ms | Allocations: 8027)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Plan without an ID):
+  
+app/controllers/contracts_controller.rb:4:in `show'
+Started GET "/contracts/1/" for 10.8.0.6 at 2021-07-17 12:30:53 +0900
+Cannot render console from 10.8.0.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ContractsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContract Load (0.2ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contracts_controller.rb:3:in `show'
+Completed 404 Not Found in 21ms (ActiveRecord: 1.0ms | Allocations: 8031)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Plan without an ID):
+  
+app/controllers/contracts_controller.rb:4:in `show'
+Started GET "/contracts/1/" for 10.8.0.6 at 2021-07-17 12:35:42 +0900
+Cannot render console from 10.8.0.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ContractsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContract Load (0.2ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contracts_controller.rb:3:in `show'
+  [1m[36mPlan Load (0.2ms)[0m  [1m[34mSELECT "plans".* FROM "plans" WHERE "plans"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contracts_controller.rb:4:in `show'
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 1.5ms | Allocations: 11664)
+
+
+  
+ArgumentError (You are passing an instance of ActiveRecord::Base to `find`. Please pass the id of the object by calling `.id`.):
+  
+app/controllers/contracts_controller.rb:4:in `show'
+Started GET "/contracts/1/" for 10.8.0.6 at 2021-07-17 12:36:37 +0900
+Cannot render console from 10.8.0.6! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ContractsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContract Load (0.2ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contracts_controller.rb:3:in `show'
+  [1m[36mPlan Load (0.1ms)[0m  [1m[34mSELECT "plans".* FROM "plans" WHERE "plans"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contracts_controller.rb:4:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering contracts/show.html.erb within layouts/application
+  Rendered contracts/show.html.erb within layouts/application (Duration: 0.9ms | Allocations: 261)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 11.8ms | Allocations: 5719)
+Completed 200 OK in 53ms (Views: 24.6ms | ActiveRecord: 1.4ms | Allocations: 18582)
+
+
